@@ -10,7 +10,7 @@ import sys
 import socket
 
 from impala.dbapi import connect
-from impala.rpc import TTransportException
+# from impala.rpc import TTransportException
 import tornado.ioloop
 try:
     import simplejson as json
@@ -66,8 +66,8 @@ class ImpalaQueryScheduler(Thread):
                                      kerberos_service_name=self.__kerberos_service)
                 connection.host = impala_host  # Slap the hostname inside the connection object
                 return connection
-            except TTransportException:
-                raise NameError("Error connecting to Impala daemon [%s]" % impala_host)
+            except Exception as e:
+                raise NameError("[ Error connecting to Impala daemon: %s, exception: %s ]" % (impala_host,e))
 
         return connection_callback
 
