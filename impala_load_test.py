@@ -10,7 +10,6 @@ import sys
 import socket
 
 from impala.dbapi import connect
-# from impala.rpc import TTransportException
 import tornado.ioloop
 try:
     import simplejson as json
@@ -20,14 +19,11 @@ import tornado.web
 
 from stats import get_stats_tables, print_stats
 
-
-
 # Date Format
 DATE_FORMAT = "%m-%d-%Y %H:%M:%S"
 
 # Time in-between queries
 TIME_BETWEEN_QUERIES = 1  # Seconds
-
 
 class ImpalaQueryScheduler(Thread):
     """
